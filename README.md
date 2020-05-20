@@ -10,6 +10,16 @@ A modernized fork of [elbeno/constexpr](https://github.com/elbeno/constexpr) sui
 Some libraries that did not compile on modern clang and gcc have been disabled and moved to the [legacy](include/legacy) directory.
 Tests fail to compile on windows, so use with caution.
 
+To add this library to your project, simply use [CPM.cmake](https://github.com/TheLartians/CPM.cmake).
+
+```cmake
+CPMAddPackage(
+  NAME constexpr
+  GITHUB_REPOSITORY TheLartians/constexpr
+  GIT_TAG 0e2279142d7e4f6631659f90894bd7dbb24d082a
+)
+```
+
 Everything (with the exception of noted functions) is written in C++11 constexpr
 style for maximum compatibility.
 
