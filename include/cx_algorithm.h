@@ -49,7 +49,8 @@ namespace cx {
     constexpr bool equal(It1 first1, It1 last1, It2 first2, Pred p) {
       return first1 == last1
                  ? true
-                 : !p(*first1, *first2) ? false : equal(first1 + 1, last1, first2 + 1, p);
+                 : !p(*first1, *first2) ? false
+                                        : cx::detail::equal(first1 + 1, last1, first2 + 1, p);
     }
   }  // namespace detail
 
@@ -100,7 +101,7 @@ namespace cx {
   constexpr pair<It1, It2> mismatch(It1 first1, It1 last1, It2 first2, It2 last2, Pred p) {
     return (first1 == last1 || first2 == last2 || !p(*first1, *first2))
                ? pair<It1, It2>{first1, first2}
-               : mismatch(first1 + 1, last1, first2 + 1, last2, p);
+               : cx::mismatch(first1 + 1, last1, first2 + 1, last2, p);
   }
 
   namespace detail {
@@ -121,7 +122,7 @@ namespace cx {
   constexpr It1 find_first_of(It1 first1, It1 last1, It2 first2, It2 last2, Pred p) {
     return first1 == last1 || detail::contains_match(first2, last2, *first1, p)
                ? first1
-               : find_first_of(first1 + 1, last1, first2, last2, p);
+               : cx::find_first_of(first1 + 1, last1, first2, last2, p);
   }
 
   template <typename It> constexpr It adjacent_find(It first, It last) {
@@ -130,8 +131,9 @@ namespace cx {
   }
 
   template <typename It, typename Pred> constexpr It adjacent_find(It first, It last, Pred p) {
-    return last - first <= 1 ? last
-                             : p(*first, *(first + 1)) ? first : adjacent_find(first + 1, last, p);
+    return last - first <= 1
+               ? last
+               : p(*first, *(first + 1)) ? first : cx::adjacent_find(first + 1, last, p);
   }
 
   template <typename It1, typename It2>
@@ -145,8 +147,8 @@ namespace cx {
   constexpr It1 search(It1 first1, It2 last1, It2 first2, It2 last2, Pred p) {
     return (last2 - first2 > last1 - first1)
                ? last1
-               : equal(first2, last2, first1, p) ? first1
-                                                 : search(first1 + 1, last1, first2, last2);
+               : cx::equal(first2, last2, first1, p) ? first1
+                                                     : search(first1 + 1, last1, first2, last2);
   }
 
   namespace detail {

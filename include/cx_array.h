@@ -154,7 +154,6 @@ namespace cx {
     }
 
   public:
-
     // inserter for at front, in the middle somewhere, at end
     template <size_t I> struct inserter<I, typename std::enable_if<(I == 0)>::type> {
       constexpr array<T, N + 1> operator()(const array<T, N>& a, const T& t) const {

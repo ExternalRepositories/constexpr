@@ -40,9 +40,11 @@ namespace cx {
       constexpr int BIT_MASK = MAX - 1;
 
       template <uint64_t S, int H, int L> struct flag1 {
-        friend constexpr int adl_flag1(flag1<S, H, L>);
+        template <uint64_t S2, int H2, int L2> friend constexpr int adl_flag1(flag1<S2, H2, L2>);
       };
-      template <uint64_t S, int H> struct flag2 { friend constexpr int adl_flag2(flag2<S, H>); };
+      template <uint64_t S, int H> struct flag2 {
+        template <uint64_t S2, int H2> friend constexpr int adl_flag2(flag2<S2, H2>);
+      };
 
       template <uint64_t S, int H> struct r1 {
         template <int L, int = adl_flag1(flag1<S, H, L>{})>

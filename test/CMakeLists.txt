@@ -28,8 +28,8 @@ CPMAddPackage(
 
 # ---- Create binary ----
 
-# legacy tests are disabled, as they fail under the new configuration: cx_counter, cx_pcg32
-add_executable (test_constexpr main cx_algorithm cx_array cx_guid cx_hash cx_math cx_numeric cx_strenc cx_typeid cx_utils)
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+add_executable (test_constexpr ${sources})
 target_link_libraries(test_constexpr constexpr)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
