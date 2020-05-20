@@ -2,14 +2,11 @@
 
 //------------------------------------------------------------------------------
 // constexpr floating-point "equality" (within epsilon)
-template <typename T>
-constexpr bool feq(T x, T y)
-{
+template <typename T> constexpr bool feq(T x, T y) {
   return cx::abs(x - y) <= std::numeric_limits<T>::epsilon();
 }
 
-void test_cx_math()
-{
+void test_cx_math() {
   // All constants referenced from Wolfram Alpha :)
 
   //----------------------------------------------------------------------------
@@ -147,9 +144,9 @@ void test_cx_math()
 
   // atan(1,1) = pi/4
   static_assert(feq(PI4, cx::atan2(1.0, 1.0)), "atan2(1.0, 1.0)");
-  static_assert(feq(3.0*PI4, cx::atan2(-1.0, 1.0)), "atan2(-1.0, 1.0)");
+  static_assert(feq(3.0 * PI4, cx::atan2(-1.0, 1.0)), "atan2(-1.0, 1.0)");
   static_assert(feq(-PI4, cx::atan2(1.0, -1.0)), "atan2(1.0, -1.0)");
-  static_assert(feq(-3.0*PI4, cx::atan2(-1.0, -1.0)), "atan2(-1.0, -1.0)");
+  static_assert(feq(-3.0 * PI4, cx::atan2(-1.0, -1.0)), "atan2(-1.0, -1.0)");
   static_assert(feq(PI4, cx::atan2(1, 1)), "atan2(1, 1)");
 
   //----------------------------------------------------------------------------
@@ -188,12 +185,12 @@ void test_cx_math()
   static_assert(cx::floor(-PI) == -4.0, "floor(-PI)");
   static_assert(cx::ceil(-PI) == -3.0, "ceil(-PI)");
 
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(cx::floor(PIl) == 3.0l, "floor(PIl)");
   static_assert(cx::ceil(PIl) == 4.0l, "ceil(PIl)");
   static_assert(cx::floor(-PIl) == -4.0l, "floor(-PIl)");
   static_assert(cx::ceil(-PIl) == -3.0l, "ceil(-PIl)");
-  #endif
+#endif
 
   static_assert(cx::floor(1) == 1.0, "floor(1)");
   static_assert(cx::ceil(1) == 1.0, "ceil(1)");
@@ -204,10 +201,10 @@ void test_cx_math()
   static_assert(cx::trunc(-PIf) == -3.0f, "trunc(-PIf)");
   static_assert(cx::trunc(PI) == 3.0, "trunc(PI)");
   static_assert(cx::trunc(-PI) == -3.0, "trunc(-PI)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(cx::trunc(PIl) == 3.0l, "trunc(PIl)");
   static_assert(cx::trunc(-PIl) == -3.0l, "trunc(-PIl)");
-  #endif
+#endif
   static_assert(cx::trunc(1) == 1.0, "trunc(1)");
 
   //----------------------------------------------------------------------------
@@ -216,43 +213,43 @@ void test_cx_math()
   static_assert(cx::round(-1.5f) == -2.0f, "round(-1.5f)");
   static_assert(cx::round(1.5) == 2.0, "round(1.5)");
   static_assert(cx::round(-1.5) == -2.0, "round(-1.5)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(cx::round(1.5l) == 2.0l, "round(1.5l)");
   static_assert(cx::round(-1.5l) == -2.0l, "round(-1.5l)");
-  #endif
+#endif
   static_assert(cx::round(1) == 1.0, "round(1)");
 
   //----------------------------------------------------------------------------
   // fmod
   static_assert(feq(1.0f, cx::fmod(9.0f, 4.0f)), "fmod(9.0f, 4.0f)");
   static_assert(feq(1.0, cx::fmod(9.0, 4.0)), "fmod(9.0, 4.0)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(feq(1.0l, cx::fmod(9.0l, 4.0l)), "fmod(9.0l, 4.0l)");
-  #endif
+#endif
 
   static_assert(feq(1.0, cx::fmod(9, 4)), "fmod(9, 4)");
   static_assert(feq(1.0, cx::fmod(9, 4.0)), "fmod(9, 4.0)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(feq(1.0l, cx::fmod(9, 4.0l)), "fmod(9, 4.0l)");
   static_assert(feq(1.0l, cx::fmod(9.0l, 4)), "fmod(9.0l, 4)");
   static_assert(feq(1.0l, cx::fmod(9.0l, 4.0l)), "fmod(9.0l, 4.0l)");
-  #endif
+#endif
 
   //----------------------------------------------------------------------------
   // remainder
   static_assert(feq(1.0f, cx::remainder(9.0f, 4.0f)), "remainder(9.0f, 4.0f)");
   static_assert(feq(1.0, cx::remainder(9.0, 4.0)), "remainder(9.0, 4.0)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(feq(1.0l, cx::remainder(9.0l, 4.0l)), "remainder(9.0l, 4.0l)");
-  #endif
+#endif
 
   static_assert(feq(1.0, cx::remainder(9, 4)), "remainder(9, 4)");
   static_assert(feq(1.0, cx::remainder(9, 4.0)), "remainder(9, 4.0)");
-  #if __cplusplus == 201402L
+#if __cplusplus == 201402L
   static_assert(feq(1.0l, cx::remainder(9, 4.0l)), "remainder(9, 4.0l)");
   static_assert(feq(1.0l, cx::remainder(9.0l, 4)), "remainder(9.0l, 4)");
   static_assert(feq(1.0l, cx::remainder(9.0l, 4.0l)), "remainder(9.0l, 4.0l)");
-  #endif
+#endif
 
   static_assert(feq(-1.0, cx::remainder(9, 5)), "remainder(9, 5)");
   static_assert(feq(1.0, cx::remainder(-9, 5)), "remainder(-9, 5)");

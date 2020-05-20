@@ -10,8 +10,7 @@ extern void test_cx_strenc();
 extern void test_cx_typeid();
 extern void test_cx_utils();
 
-int main(int, char* [])
-{
+int main(int, char*[]) {
   test_cx_algorithm();
   test_cx_array();
   // test_cx_counter();

@@ -1,7 +1,6 @@
 #include <cx_utils.h>
 
-void test_cx_utils()
-{
+void test_cx_utils() {
   // empty string, normal string
   static_assert(cx::strlen("") == 0, "strlen(\"\")");
   static_assert(cx::strlen("hello, world") == 12, "strlen(\"hello, world\")");
@@ -26,8 +25,9 @@ void test_cx_utils()
                            "01234567890123456789012345678901234567890123456789"
                            "01234567890123456789012345678901234567890123456789"
                            "01234567890123456789012345678901234567890123456789"
-                           "01234567890123456789012345678901234567890123456789"
-                           ) == 1000, "strlen(\"\")");
+                           "01234567890123456789012345678901234567890123456789")
+                    == 1000,
+                "strlen(\"\")");
 
   static_assert(cx::strcmp("abc", "abc") == 0, "strcmp equal");
   static_assert(cx::strcmp("abc", "abd") == -1, "strcmp a < b");

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "legacy/cx_pcg32.h"
-
 #include <cstdint>
 #include <ios>
 #include <ostream>
+
+#include "legacy/cx_pcg32.h"
 
 //----------------------------------------------------------------------------
 // constexpr guid generation: see
@@ -12,35 +12,26 @@
 // Version 4 UUIDs have the form xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where x is
 // any hexadecimal digit and y is one of 8, 9, A, or B
 
-namespace cx
-{
+namespace cx {
 
-  struct guid_t
-  {
+  struct guid_t {
     uint32_t data1;
     uint16_t data2;
     uint16_t data3;
     uint64_t data4;
   };
 
-  template <uint64_t S>
-  constexpr guid_t guidgen()
-  {
-    return       guid_t {
-        cx::pcg::pcg32<S>(),
-        cx::pcg::pcg32<S>() >> 16,
-        0x4000 | cx::pcg::pcg32<S>() >> 20,
+  template <uint64_t S> constexpr guid_t guidgen() {
+    return guid_t{
+        cx::pcg::pcg32<S>(), cx::pcg::pcg32<S>() >> 16, 0x4000 | cx::pcg::pcg32<S>() >> 20,
         (uint64_t{8 + (cx::pcg::pcg32<S>() >> 30)} << 60)
-        | uint64_t{cx::pcg::pcg32<S>() & 0x0fffffff} << 32
-        | uint64_t{cx::pcg::pcg32<S>()} };
+            | uint64_t{cx::pcg::pcg32<S>() & 0x0fffffff} << 32 | uint64_t{cx::pcg::pcg32<S>()}};
   }
-}
+}  // namespace cx
 
-namespace cx
-{
+namespace cx {
   // for convenience: output operator for guid
-  std::ostream& operator<<(std::ostream& s, const guid_t& g)
-  {
+  std::ostream& operator<<(std::ostream& s, const guid_t& g) {
     auto f = s.flags();
     auto c = s.fill('0');
     auto w = s.width(8);
@@ -54,7 +45,7 @@ namespace cx
     s.flags(f);
     return s;
   }
-}
+}  // namespace cx
 
 // generate a random guid
 #define cx_guid cx::guidgen<cx::fnv1(__FILE__ __DATE__ __TIME__) + __LINE__>

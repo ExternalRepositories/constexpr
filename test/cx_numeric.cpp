@@ -1,14 +1,12 @@
 #include <cx_array.h>
 #include <cx_numeric.h>
 
-void test_cx_numeric()
-{
+void test_cx_numeric() {
   // accumulate
   {
-    constexpr auto a = cx::make_array(1,2,3,4,5);
+    constexpr auto a = cx::make_array(1, 2, 3, 4, 5);
 
-    struct maximum
-    {
+    struct maximum {
       constexpr int operator()(int x, int y) const { return y > x ? y : x; }
     };
 
@@ -18,21 +16,17 @@ void test_cx_numeric()
 
   // inner_product
   {
-    constexpr auto a = cx::make_array(3,4);
+    constexpr auto a = cx::make_array(3, 4);
 
-    struct plus
-    {
+    struct plus {
       constexpr int operator()(int x, int y) const { return x + y; }
     };
-    struct mult
-    {
+    struct mult {
       constexpr int operator()(int x, int y) const { return x * y; }
     };
 
-    static_assert(cx::inner_product(a.cbegin(), a.cend(),
-                                    a.cbegin(), 0) == 25, "inner_product(1)");
-    static_assert(cx::inner_product(a.cbegin(), a.cend(),
-                                    a.cbegin(), 0, plus{}, mult{}) == 25, "inner_product(2)");
+    static_assert(cx::inner_product(a.cbegin(), a.cend(), a.cbegin(), 0) == 25, "inner_product(1)");
+    static_assert(cx::inner_product(a.cbegin(), a.cend(), a.cbegin(), 0, plus{}, mult{}) == 25,
+                  "inner_product(2)");
   }
-
 }

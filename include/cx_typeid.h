@@ -5,18 +5,13 @@
 //----------------------------------------------------------------------------
 // constexpr typeid
 
-namespace cx
-{
+namespace cx {
 
-  template <typename T>
-  struct typeid_t
-  {
-    template <typename>
-    friend constexpr uint32_t type_id();
+  template <typename T> struct typeid_t {
+    template <typename> friend constexpr uint32_t type_id();
 
   private:
-    constexpr static const char* name()
-    {
+    constexpr static const char* name() {
 #ifdef _MSC_VER
       // this is untested: __FUNCDNAME__ or __FUNCSIG__ ?
       return __FUNCDNAME__;
@@ -27,9 +22,5 @@ namespace cx
     constexpr static uint32_t id = murmur3_32(name(), 0);
   };
 
-  template <typename T>
-  constexpr uint32_t type_id()
-  {
-    return typeid_t<T>::id ;
-  }
-}
+  template <typename T> constexpr uint32_t type_id() { return typeid_t<T>::id; }
+}  // namespace cx
