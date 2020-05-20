@@ -1,3 +1,10 @@
+[![Actions Status](https://github.com/TheLartians/constexpr/workflows/MacOS/badge.svg)](https://github.com/TheLartians/constexpr/actions)
+[![Actions Status](https://github.com/TheLartians/constexpr/workflows/Windows/badge.svg)](https://github.com/TheLartians/constexpr/actions)
+[![Actions Status](https://github.com/TheLartians/constexpr/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/constexpr/actions)
+[![Actions Status](https://github.com/TheLartians/constexpr/workflows/Style/badge.svg)](https://github.com/TheLartians/constexpr/actions)
+[![Actions Status](https://github.com/TheLartians/constexpr/workflows/Install/badge.svg)](https://github.com/TheLartians/constexpr/actions)
+[![codecov](https://codecov.io/gh/TheLartians/constexpr/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/constexpr)
+
 # Experiments with constexpr
 
 Everything (with the exception of noted functions) is written in C++11 constexpr
