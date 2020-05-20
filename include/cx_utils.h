@@ -18,7 +18,7 @@ namespace cx {
     };
     constexpr str stradd(const str& a, const str& b) { return {b.s, a.len + b.len}; }
     constexpr str strlen(const str p, int maxdepth) {
-      return (*p.s == 0 | maxdepth == 0) ? p : strlen({p.s + 1, p.len + 1}, maxdepth - 1);
+      return (*p.s == 0 || maxdepth == 0) ? p : strlen({p.s + 1, p.len + 1}, maxdepth - 1);
     }
     constexpr str strlen_bychunk(const str p, int maxdepth) {
       return *p.s == 0 ? p
