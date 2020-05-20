@@ -6,7 +6,7 @@
 
 # Experiments with constexpr
 
-A modernized fork of [elbeno/constexpr](https://github.com/elbeno/constexpr) suited for library use.
+A structurally modernized fork of [elbeno/constexpr](https://github.com/elbeno/constexpr) suited for library use.
 Some libraries that did not compile on modern clang and gcc have been disabled and moved to the [legacy](include/legacy) directory.
 Tests fail to compile on windows, so use with caution.
 
