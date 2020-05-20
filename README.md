@@ -3,9 +3,12 @@
 [![Actions Status](https://github.com/TheLartians/constexpr/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/constexpr/actions)
 [![Actions Status](https://github.com/TheLartians/constexpr/workflows/Style/badge.svg)](https://github.com/TheLartians/constexpr/actions)
 [![Actions Status](https://github.com/TheLartians/constexpr/workflows/Install/badge.svg)](https://github.com/TheLartians/constexpr/actions)
-[![codecov](https://codecov.io/gh/TheLartians/constexpr/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/constexpr)
 
 # Experiments with constexpr
+
+A modernized fork of [elbeno/constexpr](https://github.com/elbeno/constexpr) suited for library use.
+Some libraries that did not compile on modern clang and gcc have been disabled and moved to the [legacy](include/legacy) directory.
+Tests fail to compile on windows, so use with caution.
 
 Everything (with the exception of noted functions) is written in C++11 constexpr
 style for maximum compatibility.
