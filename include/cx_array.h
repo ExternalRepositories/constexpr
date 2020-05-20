@@ -235,7 +235,7 @@ namespace cx {
       constexpr pred_to_less_t(P&& p) : m_p(std::forward<P>(p)) {}
       constexpr bool operator()(const T& a, const T& b) const { return m_p(b) ? false : m_p(a); }
 
-      P m_p;
+      P m_p = P();
     };
   };
 
