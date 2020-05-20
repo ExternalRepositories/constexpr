@@ -21,6 +21,7 @@ CPMAddPackage(
 add_library(constexpr INTERFACE)
 target_include_directories(constexpr INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include)
 set_target_properties(constexpr PROPERTIES INTERFACE_COMPILE_FEATURES cxx_std_17)
+target_compile_options(constexpr INTERFACE "$<$<BOOL:${MSVC}>:/permissive->")
 
 # ---- Create an installable target ----
 # this allows users to install and find the library via `find_package()`.
