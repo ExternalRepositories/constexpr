@@ -9,13 +9,6 @@
 // see cx_counter.h for the constexpr counter on which this is based
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* pcg32_runtime_error;
-    }
-  }
 
   namespace pcg
   {
@@ -157,8 +150,7 @@ namespace cx
     inline constexpr uint32_t pcg32(
         uint32_t R = detail_pcg::writer<S, H, L + N>::value)
     {
-      return true ? R :
-        throw err::pcg32_runtime_error;
+      return R ;
     }
   }
 }

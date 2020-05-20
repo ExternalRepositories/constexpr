@@ -12,13 +12,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* strenc_runtime_error;
-    }
-  }
 
   namespace detail
   {
@@ -89,8 +82,7 @@ namespace cx
   template <uint64_t S, size_t N>
   constexpr encrypted_string<S, N> make_encrypted_string(const char(&s)[N])
   {
-    return true ? encrypted_string<S, N>(s) :
-      throw err::strenc_runtime_error;
+    return encrypted_string<S, N>(s) ;
   }
 }
 

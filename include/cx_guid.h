@@ -14,13 +14,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* guidgen_runtime_error;
-    }
-  }
 
   struct guid_t
   {
@@ -33,15 +26,13 @@ namespace cx
   template <uint64_t S>
   constexpr guid_t guidgen()
   {
-    return true ?
-      guid_t {
+    return       guid_t {
         cx::pcg::pcg32<S>(),
         cx::pcg::pcg32<S>() >> 16,
         0x4000 | cx::pcg::pcg32<S>() >> 20,
         (uint64_t{8 + (cx::pcg::pcg32<S>() >> 30)} << 60)
         | uint64_t{cx::pcg::pcg32<S>() & 0x0fffffff} << 32
-        | uint64_t{cx::pcg::pcg32<S>()} } :
-    throw err::guidgen_runtime_error;
+        | uint64_t{cx::pcg::pcg32<S>()} };
   }
 }
 

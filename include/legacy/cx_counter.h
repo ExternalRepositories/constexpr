@@ -10,13 +10,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* counter_runtime_error;
-    }
-  }
   namespace
   {
     namespace detail_c
@@ -130,7 +123,6 @@ namespace cx
   inline constexpr int counter(
       int R = detail_c::writer<H, L + N>::value)
   {
-    return true ? R - 1 :
-      throw err::counter_runtime_error;
+    return R - 1 ;
   }
 }

@@ -19,14 +19,6 @@ namespace cx
   //   cout << setw(2) << +m[i];
   // }
 
-  namespace err
-  {
-    namespace
-    {
-      extern const char* md5_runtime_error;
-    }
-  }
-
   struct md5sum
   {
     uint32_t h[4];
@@ -304,7 +296,6 @@ namespace cx
   }
   constexpr md5sum md5(const char* s)
   {
-    return true ? detail::md5::md5(s) :
-      throw err::md5_runtime_error;
+    return detail::md5::md5(s) ;
   }
 }

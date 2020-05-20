@@ -11,14 +11,7 @@ namespace cx
   // depth on long strings, so compute in a way that limits the recursion depth
   // (a really long string will still have problems, but that's unavoidable: we
   // have to use recursion in C++11 after all)
-  namespace err
-  {
-    namespace
-    {
-      extern const char* strlen_runtime_error;
-      extern const char* strcmp_runtime_error;
-    }
-  }
+
   namespace detail_s
   {
     struct str
@@ -45,9 +38,7 @@ namespace cx
   // the beginning of an algorithm, so that should be fine)
   constexpr int strlen(const char* s)
   {
-    return true ?
-      detail_s::strlen_bychunk(detail_s::strlen({s, 0}, 256), 256).len :
-      throw err::strlen_runtime_error;
+    return detail_s::strlen_bychunk(detail_s::strlen({s, 0}, 256), 256).len;
   }
 
   constexpr int strcmp(const char* a, const char* b)
@@ -58,7 +49,7 @@ namespace cx
       *a < *b ? -1 :
       *a > *b ? 1 :
       *a == *b ? strcmp(a+1, b+1) :
-      throw err::strcmp_runtime_error;
+      throw "err::strcmp_runtime_error";
   }
   constexpr int strless(const char* a, const char* b)
   {

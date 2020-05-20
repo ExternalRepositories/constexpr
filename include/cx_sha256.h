@@ -17,14 +17,6 @@ namespace cx
   //   cout << setw(2) << +m[i];
   // }
 
-  namespace err
-  {
-    namespace
-    {
-      extern const char* sha256_runtime_error;
-    }
-  }
-
   struct sha256sum
   {
     uint32_t h[8];
@@ -321,7 +313,6 @@ namespace cx
   }
   constexpr sha256sum sha256(const char* s)
   {
-    return true ? detail::sha256::sha256tole(detail::sha256::sha256(s)) :
-      throw err::sha256_runtime_error;
+    return detail::sha256::sha256tole(detail::sha256::sha256(s)) ;
   }
 }

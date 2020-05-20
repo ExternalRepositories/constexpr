@@ -7,13 +7,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* typeid_runtime_error;
-    }
-  }
 
   template <typename T>
   struct typeid_t
@@ -37,7 +30,6 @@ namespace cx
   template <typename T>
   constexpr uint32_t type_id()
   {
-    return true ? typeid_t<T>::id :
-      throw err::typeid_runtime_error;
+    return typeid_t<T>::id ;
   }
 }

@@ -12,17 +12,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* array_runtime_error;
-      extern const char* transform_runtime_error;
-      extern const char* sort_runtime_error;
-      extern const char* partition_runtime_error;
-      extern const char* reverse_runtime_error;
-    }
-  }
 
   template <typename T, size_t N>
   class array
@@ -338,8 +327,7 @@ namespace cx
   template <typename T, size_t N>
   constexpr auto make_array(const T(&a)[N]) -> array<T, N>
   {
-    return true ? array<T, N>(a) :
-      throw err::array_runtime_error;
+    return array<T, N>(a);
   }
 
   // make an array from some values: decay them so that we can easily have
@@ -348,10 +336,9 @@ namespace cx
   constexpr auto make_array(E&& e, Es&&... es)
     -> array<std::decay_t<E>, 1 + sizeof...(Es)>
   {
-    return true ? array<std::decay_t<E>, 1+sizeof...(Es)>(
+    return array<std::decay_t<E>, 1+sizeof...(Es)>(
         std::forward<std::decay_t<E>>(e),
-        std::forward<std::decay_t<Es>>(es)...) :
-      throw err::array_runtime_error;
+        std::forward<std::decay_t<Es>>(es)...);
   }
 
   // array equality
@@ -370,40 +357,35 @@ namespace cx
   template <typename T, size_t N, size_t M>
   constexpr bool operator<(const array<T, N>& a, const array<T, M>& b)
   {
-    return true ? a.less(b) :
-      throw err::array_runtime_error;
+    return a.less(b) ;
   }
 
   // transform: 1-arg (map) and 2-arg (zip) variants
   template <typename F, typename T, size_t N>
   constexpr auto transform(const array<T, N>& a, F&& f) -> decltype(a.map(f))
   {
-    return true ? a.map(std::forward<F>(f)) :
-      throw err::transform_runtime_error;
+    return a.map(std::forward<F>(f)) ;
   }
 
   template <typename F, typename T, size_t N, typename U, size_t M>
   constexpr auto transform(const array<T, N>& a, const array<U, M>& b, F&& f)
     -> decltype(a.map(f, b))
   {
-    return true ? a.map(std::forward<F>(f), b) :
-      throw err::transform_runtime_error;
+    return a.map(std::forward<F>(f), b) ;
   }
 
   // sort (mergesort)
   template <typename F, typename T, size_t N>
   constexpr array<T, N> sort(const array<T, N>& a, F&& lessFn)
   {
-    return true ? a.mergesort(std::forward<F>(lessFn)) :
-      throw err::sort_runtime_error;
+    return a.mergesort(std::forward<F>(lessFn)) ;
   }
 
   // partition
   template <typename P, typename T, size_t N>
   constexpr array<T, N> partition(const array<T, N>& a, P&& pred)
   {
-    return true ? a.partition(std::forward<P>(pred)) :
-      throw err::partition_runtime_error;
+    return a.partition(std::forward<P>(pred)) ;
   }
 
   // reverse
@@ -420,7 +402,6 @@ namespace cx
   template <typename T, size_t N>
   constexpr array<T, N> reverse(const array<T, N>& a)
   {
-    return true ? detail::reverse(a, std::make_integer_sequence<int, N>()) :
-      throw err::reverse_runtime_error;
+    return detail::reverse(a, std::make_integer_sequence<int, N>()) ;
   }
 }

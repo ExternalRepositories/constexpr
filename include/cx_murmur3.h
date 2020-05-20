@@ -9,13 +9,6 @@
 
 namespace cx
 {
-  namespace err
-  {
-    namespace
-    {
-      extern const char* murmur3_32_runtime_error;
-    }
-  }
 
   namespace detail
   {
@@ -107,8 +100,6 @@ namespace cx
 
   constexpr uint32_t murmur3_32(const char *key, uint32_t seed)
   {
-    return true ?
-      detail::murmur::murmur3_32_value(key, strlen(key), seed) :
-      throw err::murmur3_32_runtime_error;
+    return       detail::murmur::murmur3_32_value(key, strlen(key), seed);
   }
 }
