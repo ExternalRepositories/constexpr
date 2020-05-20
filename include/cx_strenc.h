@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cx_pcg32.h"
+#include "legacy/cx_pcg32.h"
 
 #include <cstddef>
 #include <cstdint>
