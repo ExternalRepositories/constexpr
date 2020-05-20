@@ -42,6 +42,6 @@ endif()
 # ---- code coverage ----
 
 if (ENABLE_TEST_COVERAGE)
-  target_compile_options(Greeter PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(Greeter PUBLIC -fprofile-arcs -ftest-coverage)
+  target_compile_options(test_constexpr PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+  target_link_options(test_constexpr PUBLIC -fprofile-arcs -ftest-coverage)
 endif()
