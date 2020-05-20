@@ -14,7 +14,7 @@ namespace cx {
 
   template <typename T, size_t N> class array {
   public:
-    using const_iterator = const T* const;
+    using const_iterator = const T*;
 
     // default constructor
     constexpr array() {}
