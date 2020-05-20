@@ -26,9 +26,9 @@ CPMAddPackage(
   VERSION 1.3
 )
 
-option(USE_CLANG "build application with clang" ON)
+# ---- Create binary ----
 
-# disabled legacy tests as they fail under the new configuration: cx_counter, cx_pcg32
+# legacy tests are disabled, as they fail under the new configuration: cx_counter, cx_pcg32
 add_executable (test_constexpr main cx_algorithm cx_array cx_guid cx_hash cx_math cx_numeric cx_strenc cx_typeid cx_utils)
 target_link_libraries(test_constexpr constexpr)
 
@@ -38,6 +38,11 @@ elseif(MSVC)
   target_compile_options(test_constexpr PUBLIC /W4 /WX)
   target_compile_definitions(test_constexpr PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
 endif()
+
+# ---- add tests ----
+
+ENABLE_TESTING() 
+ADD_TEST(ConstExprTests test_constexpr)
 
 # ---- code coverage ----
 
